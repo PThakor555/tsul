@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TSUL Product</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <style>
+    .notification-popup {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--accent-color, #fff);
+      color: #000;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 9999;
+    }
+    .notification-popup.hidden { display: none; }
+    .notification-popup button {
+      background: none;
+      border: none;
+      font-size: 1.2em;
+      cursor: pointer;
+      color: #000;
+    }
+    .exit-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 1.5em;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="tsul-header">
+    <div class="nav-container">
+      <a href="index.html" class="tsul-logo">TSUL</a>
+      <div class="nav-right">
+        <button id="back-btn" class="back-button">← Back</button>
+        <button id="close-btn" class="close-button">×</button>
+        <div id="burger" class="burger-icon">☰</div>
+      </div>
+    </div>
+    <nav id="burger-menu" class="burger-menu">
+      <a href="index.html">HOME</a>
+      <a href="index.html#men">MEN</a>
+      <a href="index.html#women">WOMEN</a>
+      <a href="index.html#cart">CART</a>
+    </nav>
+  </header>
+
+  <!-- Exit Button -->
+   <button class="exit-button" onclick="window.location.href='index.html#home&skipIntro=true'">×</button>
+  <!-- Product Content -->
+  <main class="product-detail">
+    <div class="product-layout">
+      <div class="product-info">
+        <img id="main-image" src="" alt="Product Image" />
+        <h2 id="product-name"></h2>
+        <p class="product-description">Premium heavyweight comfort. Clean silhouette. Modular layering.</p>
+        <p><strong id="product-price"></strong></p>
+
+        <div class="size-buttons">
+          <button onclick="selectSize(this)">S</button>
+          <button onclick="selectSize(this)">M</button>
+          <button onclick="selectSize(this)">L</button>
+          <button onclick="selectSize(this)">XL</button>
+        </div>
+
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Notification -->
+  <div id="cart-notification" class="notification-popup hidden">
+    <span>Added to cart</span>
+    <button onclick="closeNotification()">×</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/script.js"></script>
+  <script>
+    let selectedSize = { value: "M" };
+    let product = null;
+
+    function selectSize(btn) {
+      document.querySelectorAll(".size-buttons button").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      selectedSize.value = btn.textContent;
+    }
+
+    function showNotification() {
+      const note = document.getElementById("cart-notification");
+      note.classList.remove("hidden");
+      setTimeout(() => note.classList.add("hidden"), 3000);
+    }
+
+    function closeNotification() {
+      document.getElementById("cart-notification").classList.add("hidden");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const burger = document.getElementById("burger");
+      const menu = document.getElementById("burger-menu");
+      const backBtn = document.getElementById("back-btn");
+      const closeBtn = document.getElementById("close-btn");
+
+      burger.addEventListener("click", () => {
+        menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest("#burger") && !e.target.closest("#burger-menu")) {
+          menu.style.display = "none";
+        }
+      });
+
+      backBtn.addEventListener("click", () => {
+        window.location.href = "index.html";
+      });
+
+      closeBtn.addEventListener("click", () => {
+        window.location.href = "index.html";
+      });
+
+      const addCartBtn = document.querySelector(".add-cart-btn");
+      addCartBtn.addEventListener("click", () => {
+        if (!product) return;
+        addToCart({
+          name: product.name,
+          price: product.price.replace("$", ""),
+          size: selectedSize.value
+        });
+        showNotification();
+      });
+
+      // Load product data
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get("id");
+
+      const productData = {
+        sweats: {
+          name: "TSUL Sweats – Black Colorway",
+          price: "$40",
+          image: "https://i.ibb.co/bRCPcHyt/Untitled.png"
+        },
+        hoodie: {
+          name: "TSUL Hoodie – Black Colorway",
+          price: "$40",
+          image: "https://i.ibb.co/fVn68TQd/Adobe-Express-file-3.png"
+        },
+        tee: {
+          name: "TSUL Tee – Black Colorway",
+          price: "$40",
+          image: "https://i.ibb.co/LhbjCChL/Adobe-Express-file-4.png"
+        }
+      };
+
+      product = productData[productId];
+      if (product) {
+        document.getElementById("main-image").src = product.image;
+        document.getElementById("main-image").alt = product.name;
+        document.getElementById("product-name").textContent = product.name;
+        document.getElementById("product-price").textContent = product.price;
+      } else {
+        document.querySelector(".product-layout").innerHTML = `<p class="centered">Product not found.</p>`;
+      }
+    });
+  </script>
+</body>
+</html>

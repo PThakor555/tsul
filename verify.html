@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Email Verified – TSUL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --accent: #3082FF;
+      --bg: #111;
+      --text: #eee;
+      --font: 'Helvetica Neue', sans-serif;
+    }
+    body {
+      font-family: var(--font);
+      background-color: var(--bg);
+      color: var(--text);
+      text-align: center;
+      padding: 60px 20px;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    .verified {
+      font-size: 2.5em;
+      color: var(--accent);
+      margin-top: 20px;
+    }
+    .status {
+      font-size: 1.1em;
+      margin-top: 10px;
+    }
+    .redirect {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Email Verification</h1>
+  <div class="verified" id="verified" style="display: none;">✅ Verified</div>
+  <div class="status" id="status">Checking your verification link…</div>
+  <div class="redirect" id="redirect"></div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+    import { getAuth, applyActionCode } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDqnsMa7z0Qc4VvoGgjjo1h34M7CGiCP6k",
+      authDomain: "tsul-a6c56.firebaseapp.com",
+      projectId: "tsul-a6c56",
+      storageBucket: "tsul-a6c56.firebasestorage.app",
+      messagingSenderId: "152976121059",
+      appId: "1:152976121059:web:d049440c607d83b32b39d6",
+      measurementId: "G-QB3KBY8N4C"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const statusEl = document.getElementById("status");
+    const verifiedEl = document.getElementById("verified");
+    const redirectEl = document.getElementById("redirect");
+
+    const params = new URLSearchParams(window.location.search);
+    const oobCode = params.get("oobCode");
+    const mode = params.get("mode");
+
+    if (mode === "verifyEmail" && oobCode) {
+      applyActionCode(auth, oobCode)
+        .then(() => {
+          verifiedEl.style.display = "block";
+          statusEl.textContent = "Your email has been successfully verified.";
+          redirectEl.innerHTML = `Redirecting to <a href="/">tsul.us</a>…`;
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 4000);
+        })
+        .catch((error) => {
+          statusEl.textContent = `❌ Verification failed: ${error.message}`;
+        });
+    } else {
+      statusEl.textContent = "Invalid verification link.";
+    }
+  </script>
+</body>
+</html>

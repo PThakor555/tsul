@@ -1,0 +1,134 @@
+/* === Mobile: up to 600px === */
+@media (max-width: 600px) {
+  body {
+    font-size: 15px;
+    padding: 0 12px;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .nav-center {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .nav-right {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  #search-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.9em;
+  }
+
+  .product-row {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .product-thumb {
+    width: 100%;
+    border-radius: 6px;
+  }
+
+  #cart-receipt-container {
+    padding: 16px;
+    font-size: 14px;
+  }
+
+  .cart-clear-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+  }
+
+  .modal-content {
+    width: 90%;
+    padding: 16px;
+    font-size: 0.95em;
+  }
+
+  .close-btn {
+    top: 12px;
+    right: 16px;
+    font-size: 1.5em;
+  }
+
+  .product-layout {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .image-menu {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .image-menu img {
+    width: 60px;
+  }
+
+  .size-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .size-buttons button {
+    padding: 6px 12px;
+    font-size: 0.9em;
+  }
+
+  .padded {
+    padding: 60px 12px;
+  }
+}
+
+/* === Tablet: 601px to 1024px === */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .nav-container {
+    padding: 16px 24px;
+    flex-wrap: wrap;
+  }
+
+  .nav-center {
+    gap: 20px;
+  }
+
+  .tsul-logo {
+    width: 120px;
+  }
+
+  .product-row {
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+
+  .product-thumb {
+    max-width: 48%;
+  }
+
+  .modal-content {
+    width: 80%;
+  }
+
+  .product-layout {
+    flex-direction: column;
+  }
+
+  .image-menu {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .image-menu img {
+    width: 70px;
+  }
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TSUL | Fall/Holiday 2025</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- Auth Logic -->
+  <script type="module" src="js/auth.js"></script>
+</head>
+<body>
+
+  <!-- Intro Screen -->
+  <section id="intro">
+    <canvas id="gumballs"></canvas>
+    <div id="logo-enter-container">
+      <img id="logo" src="https://i.ibb.co/BKFt90zw/IMG-4160-removebg-preview.png" alt="TSUL Logo" />
+      <a id="enter-btn" href="#"><img src="https://i.ibb.co/bjfH1Hgf/enter.png" alt="Enter Button" /></a>
+    </div>
+  </section>
+
+  <!-- Header -->
+  <header class="tsul-header">
+    <div class="promo-bar">
+      <a href="#">TSUL Fall/Holiday 2025 | Experience the Campaign</a>
+    </div>
+    <div class="nav-container">
+      <div class="nav-left">
+        <img src="https://i.ibb.co/BKFt90zw/IMG-4160-removebg-preview.png" alt="TSUL Logo" class="tsul-logo" />
+      </div>
+      <nav class="nav-center" id="nav-links">
+        <a href="#" onclick="showSection('home')">HOME</a>
+        <a href="#" onclick="showSection('men')">MEN</a>
+        <a href="#" onclick="showSection('women')">WOMEN</a>
+        <a href="#" onclick="showSection('cart')">CART</a>
+        <a href="#" onclick="toggleAboutModal()">ABOUT</a>
+      </nav>
+      <div class="nav-right">
+        <input type="text" id="search-input" placeholder="Search..." />
+        <a href="#" onclick="showSection('cart')" class="cart-icon-link">
+          <img src="https://i.ibb.co/QjvVhJJy/cart.png" alt="Cart" class="cart-icon" />
+        </a>
+        <div class="profile-dropdown">
+          <img src="https://i.ibb.co/yFnW9B0D/profile-icon.png" alt="Profile" class="profile-icon" />
+          <div class="dropdown-menu" id="profile-menu"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+
+    <!-- Homepage -->
+    <section id="home" class="section hidden">
+      <h1 class="centered padded">Welcome to TSUL Fall/Holiday 2025</h1>
+    </section>
+
+    <!-- Men Section -->
+    <section id="men" class="section hidden">
+      <h2 class="centered">Men's Collection</h2>
+      <div class="product-row">
+
+        <article class="product-tile">
+          <a href="product.html?id=sweats">
+            <div class="image-wrapper">
+              <img src="https://i.ibb.co/bRCPcHyt/Untitled.png" alt="TSUL Sweats – Black Colorway" />
+              <div class="hover-info">
+                <h3>TSUL Sweats – Black Colorway</h3>
+                <p>$40</p>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <article class="product-tile">
+          <a href="product.html?id=hoodie">
+            <div class="image-wrapper">
+              <img src="https://i.ibb.co/fVn68TQd/Adobe-Express-file-3.png" alt="TSUL Hoodie – Black Colorway" />
+              <div class="hover-info">
+                <h3>TSUL Hoodie – Black Colorway</h3>
+                <p>$40</p>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <article class="product-tile">
+          <a href="product.html?id=tee">
+            <div class="image-wrapper">
+              <img src="https://i.ibb.co/LhbjCChL/Adobe-Express-file-4.png" alt="TSUL Tee – Black Colorway" />
+              <div class="hover-info">
+                <h3>TSUL Tee – Black Colorway</h3>
+                <p>$40</p>
+              </div>
+            </div>
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Women Section -->
+    <section id="women" class="section hidden">
+      <h2 class="centered">Women's Collection</h2>
+      <p class="centered">No products available.</p>
+    </section>
+
+    <!-- Cart Section -->
+    <section id="cart" class="section hidden">
+      <h2 class="centered">Your Cart</h2>
+      <div id="cart-receipt-container">
+        <pre id="cart-items" class="cart-output"></pre>
+        <div class="centered">
+          <button onclick="clearCart()" class="cart-clear-btn">CLEAR</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- About Modal -->
+  <div id="about-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="toggleAboutModal()">×</span>
+      <h2>About TSUL</h2>
+      <p><strong>TSUL</strong> is a Brooklyn-based fashion label focused on clean silhouettes, heavyweight comfort, and modular layering. No slogans. No fluff. Just clothes and motion.</p>
+      <p>This site is custom-built for speed, clarity, and control — from cart logic to modal transitions.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="tsul-footer">
+    <p>&copy; 2025 TSUL. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/script.js"></script>
+
+  <div id="about-modal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close-btn" onclick="toggleAboutModal()">×</span>
+    <h2>About TSUL</h2>
+    <p><strong>TSUL</strong> is a Brooklyn-based fashion label...</p>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,414 @@
+/* ========== Font Face Declarations ========== */
+@font-face {
+  font-family: 'Tippa';
+  src: url('../Tippa.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ========== Root Variables ========== */
+:root {
+  --accent-color: #FF8C42;
+  --accent-hover: #C77DFF;
+  --accent-shadow: 0 0 2px var(--accent-color);
+  --bg-dark: #000;
+  --bg-light: #111;
+  --text-light: #fff;
+  --text-muted: #ccc;
+  --border-color: #333;
+  --font-stack: "Tippa", "PUNKBABE TRIAL", "CirrusCumulus", "Segoe Print", "Futura", "Trebuchet MS", sans-serif;
+}
+
+/* ========== Base Reset ========== */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-stack);
+  background: var(--bg-dark);
+  color: var(--text-light);
+  overflow-x: hidden;
+}
+
+main {
+  padding-top: 0;
+}
+
+main.with-header {
+  padding-top: 120px; /* Account for fixed header */
+}
+
+.section {
+  padding: 60px 20px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.section.active {
+  opacity: 1;
+}
+
+/* ========== Canvas Background ========== */
+#gumballs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+}
+
+/* ========== Intro Section ========== */
+#intro {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+#logo-enter-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  opacity: 0;
+  transition: opacity 2s ease;
+  z-index: 10;
+  position: relative;
+}
+
+#logo {
+  width: 350px;
+  transform: scaleX(1.2);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { filter: drop-shadow(0 0 10px var(--accent-color)); }
+  50% { filter: drop-shadow(0 0 20px var(--accent-hover)); }
+}
+
+#enter-btn {
+  position: relative;
+  top: 0;
+}
+
+#enter-btn img {
+  width: 120px;
+  transform: scaleX(1.1);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#enter-btn img:hover {
+  transform: scale(1.2);
+}
+
+/* ========== Header ========== */
+.tsul-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--bg-dark);
+  z-index: 1000;
+  border-bottom: 1px solid var(--border-color);
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.tsul-header.visible {
+  display: block;
+  opacity: 1;
+}
+
+.promo-bar {
+  background: var(--bg-light);
+  color: var(--text-muted);
+  text-align: center;
+  padding: 8px 0;
+  font-size: 0.9em;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.promo-bar a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.promo-bar a:hover {
+  color: var(--accent-hover);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  min-height: 60px;
+}
+
+.tsul-logo {
+  width: 140px;
+}
+
+/* ========== Navigation ========== */
+.nav-center {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.nav-center a {
+  font-family: var(--font-stack);
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-shadow: 0 0 1px #fff, var(--accent-shadow);
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-center a:hover {
+  color: var(--accent-color);
+  transform: scale(1.1);
+}
+
+.nav-right {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-right a img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.2s ease;
+}
+
+.nav-right a img:hover {
+  transform: scale(1.2);
+}
+
+#search-input {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: none;
+  font-size: 1em;
+  font-family: var(--font-stack);
+}
+
+/* ========== Burger Menu ========== */
+#nav-links.open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 30px;
+  background: var(--bg-light);
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  z-index: 200;
+}
+
+#back-btn {
+  margin-top: 10px;
+  color: var(--accent-color);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ========== Product Cards ========== */
+.product {
+  background: var(--bg-light);
+  margin: 20px auto;
+  padding: 20px;
+  width: 300px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+}
+
+.product h3,
+.product p,
+.product button {
+  font-family: var(--font-stack);
+}
+
+.product button {
+  background: #3082FF;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.product button:hover {
+  background: var(--accent-color);
+}
+
+/* ========== Profile Dropdown ========== */
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+  z-index: 300;
+}
+
+.profile-icon {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  border-radius: 50%;
+  filter: brightness(0) invert(1);
+  transition: transform 0.2s ease;
+}
+
+.profile-icon:hover {
+  transform: scale(1.2);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  padding: 16px;
+  width: 220px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+.dropdown-menu.visible {
+  display: block;
+}
+
+.dropdown-menu input,
+.dropdown-menu button {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  font-size: 0.9em;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-stack);
+  background: #222;
+  color: white;
+}
+
+.dropdown-menu button {
+  background: #3082FF;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.dropdown-menu button:hover {
+  background: var(--accent-color);
+}
+
+.dropdown-menu a {
+  display: block;
+  text-align: center;
+  font-size: 0.8em;
+  color: var(--accent-color);
+  text-decoration: underline;
+  margin-top: 10px;
+}
+
+/* ========== Cart Receipt Overlay ========== */
+#cart-receipt-container {
+  background-color: #fff;
+  color: #000;
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  font-family: monospace;
+  font-size: 16px;
+  line-height: 1.6em;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+#cart-receipt-container {
+  background-color: #fff;
+  color: #000;
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  font-family: monospace;
+  font-size: 16px;
+  line-height: 1.6em;
+  border: 2px dashed #000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+#cart {
+  text-align: center;
+}
+@media (max-width: 600px) 
+{
+  #cart-items {
+    top: 60px;
+    left: 10vw;
+    width: 70vw;
+    font-size: 14px;
+  }
+}
+
+/* ========== Responsive Design ========== */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 10px 15px;
+    flex-wrap: wrap;
+  }
+
+  .nav-center {
+    gap: 15px;
+  }
+
+  .nav-center a {
+    font-size: 0.9em;
+  }
+
+  .tsul-logo {
+    width: 100px;
+  }
+
+  main.with-header {
+    padding-top: 100px;
+    #nav-links {
+  display: none;
+}
+
+#nav-links.open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 30px;
+  background: var(--bg-light);
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  z-index: 200;
+  #nav-links {
+  display: none;
+  
+}
+
+}
+
+  }
+}

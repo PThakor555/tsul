@@ -1,0 +1,677 @@
+/* === Font Face === */
+@font-face {
+  font-family: 'Tippa';
+  src: url('../Tippa.ttf') format('truetype');
+}
+
+/* === Root Variables === */
+:root {
+  --accent-color: #FF8C42;
+  --accent-hover: #C77DFF;
+  --accent-shadow: 0 0 2px var(--accent-color);
+  --bg-dark: #000;
+  --bg-light: #111;
+  --text-light: #fff;
+  --text-muted: #ccc;
+  --border-color: #333;
+  --font-stack: 'Tippa', 'PUNKBABE TRIAL', 'CirrusCumulus', 'Segoe Print', 'Futura', 'Trebuchet MS', sans-serif;
+}
+
+/* === Base Reset === */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-stack);
+  background: var(--bg-dark);
+  color: var(--text-light);
+  overflow-x: hidden;
+}
+
+/* === Typography === */
+h1, h2, h3, h4, h5, h6,
+p, a, button, input, select, textarea,
+.nav-center a, .promo-bar a,
+.product h3, .product p, .product button,
+.dropdown-menu a, .dropdown-menu button,
+#search-input, #back-btn, .cart-output {
+  font-family: var(--font-stack);
+}
+
+/* === Section Layout === */
+.section {
+  padding: 60px 20px;
+  min-height: 100px;
+  display: none;
+}
+
+.section.active {
+  display: block;
+  padding-top: 160px;
+}
+
+/* === Canvas Background === */
+#gumballs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* === Intro Section === */
+#intro {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+#logo-enter-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  opacity: 0;
+  transition: opacity 2s ease;
+  position: relative;
+  z-index: 10;
+}
+
+#logo {
+  width: 300px;
+  transform: scaleX(1.1);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { filter: drop-shadow(0 0 10px var(--accent-color)); }
+  50% { filter: drop-shadow(0 0 20px var(--accent-hover)); }
+}
+
+#enter-btn img {
+  width: 100px;
+  transform: scaleX(1.05);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#enter-btn img:hover {
+  transform: scale(1.2);
+}
+
+/* === Header === */
+.tsul-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--bg-dark);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.tsul-header.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.promo-bar {
+  background: var(--bg-light);
+  color: var(--text-muted);
+  text-align: center;
+  padding: 8px 0;
+  font-size: 0.9em;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.promo-bar a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.promo-bar a:hover {
+  color: var(--accent-hover);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  min-height: 60px;
+}
+
+.tsul-logo {
+  width: 120px;
+}
+
+/* === Navigation === */
+.nav-center {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.nav-center a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-shadow: 0 0 1px #fff, var(--accent-shadow);
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-center a:hover {
+  color: var(--accent-color);
+  transform: scale(1.1);
+}
+
+.nav-right {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-right a img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.2s ease;
+}
+
+.nav-right a img:hover {
+  transform: scale(1.2);
+}
+
+#search-input {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: none;
+  font-size: 1em;
+}
+
+/* === Burger Menu === */
+#nav-links.open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 30px;
+  background: var(--bg-light);
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  z-index: 200;
+}
+
+#back-btn {
+  margin-top: 10px;
+  color: var(--accent-color);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* === Product Grid === */
+.product-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+/* === Product Cards === */
+.product {
+  background: var(--bg-light);
+  padding: 16px;
+  width: 260px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+}
+
+.product-thumb {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 6px;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.product button {
+  background: #3082FF;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.product button:hover {
+  background: var(--accent-color);
+}
+
+/* === Zoom Button === */
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+}
+
+.zoom-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 6px 10px;
+  font-size: 1em;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-wrapper:hover .zoom-btn {
+  opacity: 1;
+}
+
+/* === Profile Dropdown === */
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+  z-index: 300;
+}
+
+.profile-icon {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  border-radius: 50%;
+  filter: brightness(0) invert(1);
+  transition: transform 0.2s ease;
+}
+
+.profile-icon:hover {
+  transform: scale(1.2);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  padding: 16px;
+  width: 220px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+.dropdown-menu.visible {
+  display: block;
+}
+
+.dropdown-menu input,
+.dropdown-menu button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  font-size: 0.9em;
+  border: none;
+  border-radius: 6px;
+  background: #222;
+  color: #fff;
+}
+
+.dropdown-menu button {
+  background: #3082FF;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-menu button:hover {
+  background: var(--accent-color);
+}
+
+.dropdown-menu a {
+  display: block;
+  text-align: center;
+  font-size: 0.8em;
+  color: var(--accent-color);
+  text-decoration: underline;
+  margin-top: 12px;
+}
+
+/* === Cart Receipt === */
+#cart-receipt-container {
+  background: #fff;
+  color: #000;
+  padding: 24px;
+  max-width: 500px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.6;
+  border: 2px dashed #000;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+}
+
+#cart {
+  text-align: center;
+}
+
+.cart-output {
+  font-family: monospace;
+  padding: 20px;
+}
+
+/* === Clear Cart Button === */
+.cart-clear-btn {
+  padding: 10px 20px;
+  font-weight: bold;
+  font-family: var(--font-stack);
+}
+
+/* === Cart Badge === */
+.cart-icon-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: var(--accent-color);
+  color: #fff;
+  font-size: 0.7em;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+/* === Quantity Input === */
+.qty-input {
+  width: 50px;
+  margin: 5px 0;
+}
+
+/* === Favorite Button === */
+.fav-btn {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: var(--accent-color);
+  margin-left: 10px;
+  transition: color 0.3s ease;
+}
+
+.fav-btn.active {
+  color: red;
+}
+
+/* === Product Filters === */
+.product-filters {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.product-filters select {
+  padding: 6px 12px;
+  font-size: 0.9em;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  font-family: var(--font-stack);
+}
+
+/* === Responsive Cart Items === */
+@media (max-width: 600px) {
+  #cart-items {
+    top: 60px;
+    left: 10vw;
+    width: 80vw;
+    font-size: 14px;
+  }
+}
+
+/* === Responsive Navigation === */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 12px 18px;
+    flex-wrap: wrap;
+  }
+
+  .nav-center {
+    gap: 16px;
+  }
+
+  .nav-center a {
+    font-size: 0.9em;
+  }
+
+  .tsul-logo {
+    width: 100px;
+  }
+
+  main.with-header {
+    padding-top: 100px;
+  }
+
+  #nav-links {
+    display: none;
+  }
+
+  #nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 30px;
+    background: var(--bg-light);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    z-index: 200;
+  }
+}
+
+/* === Modal Viewer === */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: #000;
+  color: #fff;
+  padding: 20px;
+  max-width: 600px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  border-radius: 8px;
+  border: 1px solid var(--accent-color);
+}
+
+.modal img {
+  max-width: 90%;
+  max-height: 90%;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.modal img:hover {
+  transform: scale(1.2);
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2em;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* === Section Visibility === */
+.section.show {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+/* === Product Animation === */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.product {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+/* === Product Detail Layout === */
+.product-detail {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 20px;
+  color: #fff;
+}
+
+.product-layout {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.image-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.image-menu img {
+  width: 80px;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.image-menu img.active {
+  opacity: 1;
+  border: 2px solid var(--accent-color);
+}
+
+.product-info img#main-image {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.size-buttons {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.size-buttons button {
+  padding: 8px 16px;
+  border: 1px solid var(--accent-color);
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: var(--font-stack);
+}
+
+.size-buttons button.active {
+  background: var(--accent-color);
+  color: #000;
+  font-weight: bold;
+}
+
+/* === Add to Cart Button === */
+.add-cart-btn {
+  background: var(--accent-color);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 20px;
+  font-family: var(--font-stack);
+}
+
+/* === Footer === */
+.tsul-footer {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 0.85em;
+  color: #aaa;
+  background: #000;
+  border-top: 1px solid var(--border-color);
+  font-family: var(--font-stack);
+}
+
+/* === Utility === */
+nav a.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none;
+}
+
+.centered {
+  text-align: center;
+}
+
+.padded {
+  padding: 100px 20px;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
